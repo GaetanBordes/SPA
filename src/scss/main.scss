@@ -1,0 +1,27 @@
+@use "./variables" as vars;
+@use "./mixins" as mix;
+@use "./base";
+
+body {
+  background: vars.$color-bg;
+}
+
+.card-game {
+  @include mix.transition-ease(transform, 0.25s);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.game-img {
+  height: 200px;
+  object-fit: cover;
+}
+
+@include mix.mobile {
+  .game-img {
+    height: 150px;
+  }
+}

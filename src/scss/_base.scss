@@ -1,0 +1,29 @@
+@use "./variables" as vars;
+@use "./mixins" as mix;
+
+body {
+  font-family: vars.$font-base;
+  background: vars.$color-bg;
+  color: vars.$color-text;
+  margin: 0;
+  padding: 0;
+}
+
+a.internal {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: vars.$color-primary;
+    @include mix.transition-ease(width);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}

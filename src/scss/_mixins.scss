@@ -1,0 +1,11 @@
+@use "./variables" as vars;
+
+@mixin mobile {
+  @media (max-width: vars.$mobile-width) {
+    @content;
+  }
+}
+
+@mixin transition-ease($prop, $dur: 0.3s) {
+  transition: #{$prop} #{$dur} ease-in-out;
+}
