@@ -1,12 +1,7 @@
-// src/scss/_custom-bootstrap.scss
-
-// 1) Import des variables Bootstrap par défaut
-//    On surcharge ensuite celles qu’on veut changer.
 @use "bootstrap/scss/functions";
 @use "bootstrap/scss/variables";
 @use "bootstrap/scss/maps";
 
-// 2) Surcharges
 $spacer: 1rem !default;
 $font-family-base: "Inter, sans-serif" !default;
 $font-family-headings: "Roboto Slab", serif !default;

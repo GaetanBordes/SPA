@@ -117,10 +117,8 @@ export function PageList(searchQuery = "") {
     if (e.key === "Enter") doSearch();
   });
 
-  // À implémenter : rechargement avec filtre plateforme
   platformFilter.addEventListener("change", (e) => {
     console.log("Filtrer plateforme", e.target.value);
-    // TODO : adapter searchQuery + reset page = 1 + appel fetchAndRender()
   });
 
   // Show more

@@ -157,7 +157,6 @@ export function PageDetail(slug = "") {
 
       d.innerHTML = html;
 
-      // --- fetch des jeux similaires sans plantage JSON ---
       fetch(
         `https://api.rawg.io/api/games/${game.id}/suggested?key=${RAWG_API_KEY}&page_size=4`
       )

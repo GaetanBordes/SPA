@@ -37,19 +37,19 @@ h5 {
   font-size: 1.25rem;
   margin-bottom: vars.$spacer;
   border-bottom: 2px solid vars.$color-primary;
-  padding-bottom: math.div(vars.$spacer, 2); // ← remplace `vars.$spacer / 2`
+  padding-bottom: math.div(vars.$spacer, 2);
 }
 
 // Espacement des sections dans #detail
 #detail > section {
-  margin-bottom: math.div(vars.$spacer, 1); // ou `vars.$spacer` tout court
+  margin-bottom: math.div(vars.$spacer, 1);
 }
 
 // Styles pour la liste de détails
 .list-group-item {
   border: none;
   border-bottom: 1px solid rgba(vars.$color-text, 0.1);
-  padding: math.div(vars.$spacer, 2) vars.$spacer; // ← math.div pour la division
+  padding: math.div(vars.$spacer, 2) vars.$spacer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,12 +64,12 @@ h5 {
 }
 
 .game-detail-img {
-  display: block; // évite l’inline-gap
-  width: 100%; // plein conteneur en largeur
-  height: auto; // calcule la hauteur pour conserver le ratio
-  max-width: 600px; // limite la largeur (à ajuster)
-  margin: 0 auto vars.$spacer; // centre + espace sous l’image
-  object-fit: contain; // montre l’image entière, sans la couper
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  margin: 0 auto vars.$spacer;
+  object-fit: contain;
 }
 
 // 1) Header titre + note
