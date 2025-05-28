@@ -1,11 +1,27 @@
 @use "./variables" as vars;
 
+// Mixin pour media mobile
 @mixin mobile {
   @media (max-width: vars.$mobile-width) {
     @content;
   }
 }
 
+// Mixin transition simplifiée
 @mixin transition-ease($prop, $dur: 0.3s) {
   transition: #{$prop} #{$dur} ease-in-out;
+}
+
+// Mixin pour ombre légère sur les cartes et containers
+@mixin box-shadow-soft {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+// Mixin clearfix
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }

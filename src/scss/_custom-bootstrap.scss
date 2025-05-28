@@ -1,0 +1,30 @@
+// src/scss/_custom-bootstrap.scss
+
+// 1) Import des variables Bootstrap par défaut
+//    On surcharge ensuite celles qu’on veut changer.
+@use "bootstrap/scss/functions";
+@use "bootstrap/scss/variables";
+@use "bootstrap/scss/maps";
+
+// 2) Surcharges
+$spacer: 1rem !default;
+$font-family-base: "Inter, sans-serif" !default;
+$font-family-headings: "Roboto Slab", serif !default;
+
+$body-bg: #121212 !default; // fond sombre
+$body-color: #f8f9fa !default;
+
+// Cards
+$card-border-width: 0 !default;
+$card-border-radius: 1rem !default;
+
+// Badges
+$badge-bg: #ffc107 !default;
+$badge-color: #212529 !default;
+$badge-font-weight: 500 !default;
+
+// Buttons
+$btn-border-radius: 0.5rem !default;
+$btn-color: #fff !default;
+$btn-bg: #0d6efd !default;
+$btn-hover-bg: darken($btn-bg, 5%) !default;

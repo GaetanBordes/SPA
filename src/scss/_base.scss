@@ -1,3 +1,6 @@
+// src/scss/_base.scss
+
+@use "sass:math";
 @use "./variables" as vars;
 @use "./mixins" as mix;
 
@@ -25,5 +28,90 @@ a.internal {
 
   &:hover::after {
     width: 100%;
+  }
+}
+
+// Titres de section
+h5 {
+  font-family: vars.$font-heading;
+  font-size: 1.25rem;
+  margin-bottom: vars.$spacer;
+  border-bottom: 2px solid vars.$color-primary;
+  padding-bottom: math.div(vars.$spacer, 2); // ← remplace `vars.$spacer / 2`
+}
+
+// Espacement des sections dans #detail
+#detail > section {
+  margin-bottom: math.div(vars.$spacer, 1); // ou `vars.$spacer` tout court
+}
+
+// Styles pour la liste de détails
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid rgba(vars.$color-text, 0.1);
+  padding: math.div(vars.$spacer, 2) vars.$spacer; // ← math.div pour la division
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: rgba(vars.$color-primary, 0.05);
+  }
+}
+
+.game-detail-img {
+  display: block; // évite l’inline-gap
+  width: 100%; // plein conteneur en largeur
+  height: auto; // calcule la hauteur pour conserver le ratio
+  max-width: 600px; // limite la largeur (à ajuster)
+  margin: 0 auto vars.$spacer; // centre + espace sous l’image
+  object-fit: contain; // montre l’image entière, sans la couper
+}
+
+// 1) Header titre + note
+.detail-header {
+  display: flex;
+  align-items: baseline;
+  h1 {
+    margin: 0;
+  }
+  .rating {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+// 2) Info-grid : deux colonnes
+.info-grid {
+  > div {
+    background: #fff;
+    padding: vars.$spacer;
+    @include mix.box-shadow-soft;
+    border-radius: 0.5rem;
+  }
+}
+
+// 3) Store buttons
+.store-buttons a.btn {
+  min-width: 120px;
+}
+
+// 4) Screenshots
+.screenshot-grid img {
+  height: 150px;
+  object-fit: cover;
+}
+
+// 5) Similar games
+#similarGames .card {
+  @include mix.box-shadow-soft;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: translateY(-5px);
   }
 }

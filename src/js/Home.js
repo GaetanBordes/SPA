@@ -1,3 +1,4 @@
+// src/js/Home.js
 import { RAWG_API_KEY } from "../config.js";
 
 export function Home() {
@@ -6,7 +7,6 @@ export function Home() {
 
   container.innerHTML = `
     <div class="container my-4">
-
       <!-- Hero Banner -->
       <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5 text-center">
@@ -29,7 +29,9 @@ export function Home() {
 
       <!-- Show more -->
       <div class="text-center mt-4">
-        <button class="btn btn-outline-secondary" id="showMoreHome">Show more</button>
+        <button class="btn btn-outline-secondary" id="showMoreHome">
+          Show more
+        </button>
       </div>
     </div>
   `;
@@ -45,6 +47,7 @@ export function Home() {
   const fetchAndRenderHome = () => {
     spinner.style.display = "flex";
 
+    // Dates pour l'année suivante
     const today = new Date().toISOString().slice(0, 10);
     const nextYear = new Date(
       new Date().setFullYear(new Date().getFullYear() + 1)
@@ -88,9 +91,8 @@ export function Home() {
                 <p class="card-text text-muted mb-4">
                   Sortie : ${game.released || "N/A"}
                 </p>
-                <a href="#pagedetail/${
-                  game.id
-                }" class="mt-auto btn btn-primary">
+                <a href="#game/${encodeURIComponent(game.slug)}"
+                   class="mt-auto btn btn-primary">
                   Voir détails
                 </a>
               </div>
@@ -105,12 +107,15 @@ export function Home() {
       })
       .catch((err) => {
         console.error("Fetch Home erreur :", err);
-        grid.innerHTML = '<p class="text-danger">Erreur de chargement.</p>';
+        grid.innerHTML =
+          '<p class="text-danger">Erreur de chargement des jeux.</p>';
       });
   };
 
+  // Premier chargement
   fetchAndRenderHome();
 
+  // “Show more”
   btn.addEventListener("click", () => {
     page++;
     fetchAndRenderHome();

@@ -1,10 +1,10 @@
+// src/js/PageList.js
 import { RAWG_API_KEY } from "../config.js";
 
 export function PageList(searchQuery = "") {
   console.log("PageList", searchQuery);
   const container = document.getElementById("pageContent");
-
-  container.innerHTML = `
+  const pageTitleHTML = `
     <div class="container">
       <div class="row mb-3 align-items-center">
         <div class="col-md-6">
@@ -26,25 +26,26 @@ export function PageList(searchQuery = "") {
           </select>
         </div>
       </div>
-
       <div id="gamesGrid" class="row g-3"></div>
-
       <div class="text-center mt-4">
         <button class="btn btn-outline-secondary" id="showMoreBtn">Show more</button>
       </div>
     </div>
   `;
+  container.innerHTML = pageTitleHTML;
 
-  let page = 1;
-  const pageSize = 9;
-  let totalLoaded = 0;
-
+  // Récupération des éléments après injection
   const grid = document.getElementById("gamesGrid");
   const showMoreBtn = document.getElementById("showMoreBtn");
   const searchInput = document.getElementById("searchInput");
   const searchBtn = document.getElementById("searchBtn");
   const platformFilter = document.getElementById("platformFilter");
 
+  let page = 1;
+  const pageSize = 9;
+  let totalLoaded = 0;
+
+  // Fonction de fetch et rendu
   const fetchAndRender = () => {
     const url =
       `https://api.rawg.io/api/games?key=${RAWG_API_KEY}` +
@@ -53,13 +54,14 @@ export function PageList(searchQuery = "") {
 
     fetch(url)
       .then((res) => {
-        if (!res.ok) throw new Error(res.status);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then((data) => {
+        // Si on recharge au page 1, on reset la grille
         if (page === 1) {
-          totalLoaded = 0;
           grid.innerHTML = "";
+          totalLoaded = 0;
           showMoreBtn.style.display = "inline-block";
         }
 
@@ -83,12 +85,14 @@ export function PageList(searchQuery = "") {
               </div>
             </div>
           `;
+          // Au clic sur la card, on passe au slug du jeu
           col.querySelector(".card-game").addEventListener("click", () => {
-            window.location.hash = `#pagedetail/${game.id}`;
+            window.location.hash = `#game/${encodeURIComponent(game.slug)}`;
           });
           grid.append(col);
         });
 
+        // Masquer le bouton après 3 pages (27 items)
         if (totalLoaded >= pageSize * 3) {
           showMoreBtn.style.display = "none";
         }
@@ -100,23 +104,26 @@ export function PageList(searchQuery = "") {
       });
   };
 
+  // Premier appel
   fetchAndRender();
 
-  searchBtn.addEventListener("click", () => {
+  // Recherche (clic + Enter)
+  const doSearch = () => {
     const q = searchInput.value.trim();
     window.location.hash = `#pagelist/${encodeURIComponent(q)}`;
-  });
+  };
+  searchBtn.addEventListener("click", doSearch);
   searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const q = e.target.value.trim();
-      window.location.hash = `#pagelist/${encodeURIComponent(q)}`;
-    }
+    if (e.key === "Enter") doSearch();
   });
 
+  // À implémenter : rechargement avec filtre plateforme
   platformFilter.addEventListener("change", (e) => {
     console.log("Filtrer plateforme", e.target.value);
+    // TODO : adapter searchQuery + reset page = 1 + appel fetchAndRender()
   });
 
+  // Show more
   showMoreBtn.addEventListener("click", () => {
     page++;
     fetchAndRender();

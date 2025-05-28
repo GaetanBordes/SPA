@@ -1,27 +1,33 @@
+@use "sass:math";
 @use "./variables" as vars;
 @use "./mixins" as mix;
 @use "./base";
 
+// Global overrides / helper styles
 body {
   background: vars.$color-bg;
+  color: vars.$color-text;
 }
 
+// Card hover animé
 .card-game {
   @include mix.transition-ease(transform, 0.25s);
-
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   }
 }
 
+// Hauteur fixe images cartes
 .game-img {
   height: 200px;
   object-fit: cover;
 }
-
 @include mix.mobile {
   .game-img {
     height: 150px;
   }
 }
+
+// PageDetail spécifiques…
+/* … colles ici tout ce qu’on a mis pour .detail-header, .info-grid, etc. */

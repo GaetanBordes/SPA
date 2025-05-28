@@ -2,20 +2,54 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Jeux Tendances</title>
+    <title>Très Hypée Progame</title>
+    <!-- Bootstrap CSS (CDN) -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeo4ABiGFsal5hhK+7Mj6Y5e5z58Q2Gdi+ZTPQF0PWv0Qbsw"
+      crossorigin="anonymous"
     />
+    <!-- Ton CSS compilé -->
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <nav><!-- ta navbar --></nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="#">Très Hypée Progame</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pagelist">Liste des jeux</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteneur SPA -->
     <main id="pageContent" class="container">Chargement…</main>
 
-    <!-- Bootstrap JS si tu veux -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Bootstrap JS (CDN) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeo4ABiGFsal5hhK+7Mj6Y5e5z58Q2Gdi+ZTPQF0PWv0Qbsw"
+      crossorigin="anonymous"
+    ></script>
     <!-- Ton bundle Webpack -->
-    <script src="/bundle.js"></script>
+    <script src="bundle.js"></script>
   </body>
 </html>
